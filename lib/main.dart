@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_ip_medpoint_sistem/core/widgets/doctor_list.dart';
 import 'package:supabase/supabase.dart';
 
 class Supa {
@@ -9,7 +10,7 @@ class Supa {
 
 final supabase = SupabaseClient(Supa.supabaseUrl, Supa.supabaseKey);
 void main() async {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
@@ -38,6 +39,13 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Medpoint Doctor list"),
+        leading: const Icon(Icons.menu),
+        toolbarHeight: 50,
+        backgroundColor: Color.fromARGB(100, 82, 114, 255),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(10),
+        child: DoctorList(),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_ip_medpoint_sistem/core/widgets/doctor_list.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:mobile_ip_medpoint_sistem/ui/core/widgets/doctor_list.dart';
 import 'package:supabase/supabase.dart';
 
 class Supa {

@@ -1,13 +1,11 @@
 class Doctor {
-  final String id;
   final String name;
   final String gender;
   final String specializationId;
   final String userId;
 
   Doctor(
-      {required this.id,
-      required this.gender,
+      {required this.gender,
       required this.name,
       required this.specializationId,
       required this.userId});
@@ -15,14 +13,12 @@ class Doctor {
   factory Doctor.fromJson(Map<String, dynamic> json) {
     return switch (json) {
       {
-        "id": String id,
         "gender": String gender,
         "name": String name,
         "specialization_id": String specializationId,
         "user_id": String userId
       } =>
         Doctor(
-            id: id,
             gender: gender,
             name: name,
             specializationId: specializationId,

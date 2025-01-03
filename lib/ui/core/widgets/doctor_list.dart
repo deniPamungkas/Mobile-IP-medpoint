@@ -21,8 +21,16 @@ import 'package:mobile_ip_medpoint_sistem/domain/models/doctor.dart';
 //   }
 // }
 
-class DoctorList extends StatelessWidget {
+class DoctorList extends StatefulWidget {
   const DoctorList({super.key});
+
+  @override
+  State<DoctorList> createState() => _DoctorList();
+}
+
+class _DoctorList extends State<DoctorList> {
+  int doctorCount = 0;
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<DoctorResponse>(
@@ -30,18 +38,31 @@ class DoctorList extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final doctors = snapshot.data?.data;
-            return ListView.separated(
-              itemCount: doctors!.length,
-              separatorBuilder: (BuildContext context, int index) =>
-                  const Divider(
-                color: Color.fromARGB(0, 206, 70, 70),
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                final doctor = doctors[index];
-                return DoctorCard(
-                  data: doctor,
-                );
-              },
+            return Column(
+              children: <Widget>[
+                Expanded(
+                    child: ListView.separated(
+                  itemCount: doctors!.length,
+                  separatorBuilder: (BuildContext context, int index) =>
+                      const Divider(
+                    color: Color.fromARGB(0, 206, 70, 70),
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    final doctor = doctors[index];
+                    return DoctorCard(
+                      data: doctor,
+                    );
+                  },
+                )),
+                Text("displayed doctor = $doctorCount"),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        doctorCount = doctors.length;
+                      });
+                    },
+                    child: Text('refresh data'))
+              ],
             );
           }
           return const CircularProgressIndicator();
